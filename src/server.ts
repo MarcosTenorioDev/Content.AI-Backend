@@ -4,6 +4,7 @@ import { getAllPromptsRoute } from './routes/get-all-prompts';
 import { uploadVideoRoute } from './routes/upload-video';
 import { createTranscriptionRoute } from './routes/create-transcription';
 import { generateAiCompletionRoute } from './routes/generate-ai-completion';
+import { main } from '../prisma/seed';
 
 const app = fastify();
 
@@ -17,7 +18,7 @@ app.register(createTranscriptionRoute)
 app.register(generateAiCompletionRoute)
 
 app.listen({
-    port:3333,
-}).then(() =>{
-    console.log('HTTP server running!')
+    port:Number(process.env.PORT) || 3000,
+}).then((port) =>{
+    console.log('HTTP server running! on port: ', port)
 })

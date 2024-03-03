@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-async function main() {
+export async function main() {
   await prisma.prompt.deleteMany();
 
   await prisma.prompt.create({
@@ -56,6 +56,52 @@ Transcrição:
 '''`.trim(),
     },
   });
+
+  await prisma.prompt.create({
+    data: {
+      title: "Descrição TikTok",
+      template:
+        `Crie uma descrição envolvente para seu vídeo no TikTok.
+  
+  Use no máximo 50 caracteres para destacar o conteúdo principal do vídeo e chamar a atenção.
+  
+  Além disso, adicione até 3 emojis relacionados ao conteúdo para atrair mais visualizações.
+  
+  Ao final, inclua de 3 a 5 hashtags relevantes em letras minúsculas.
+  
+  O formato deve ser o seguinte:
+  '''
+  Descrição curta. 😊🎥
+  
+  #hashtag1 #hashtag2 #hashtag3
+  '''
+  `.trim(),
+    },
+  });
+  
+
+  await prisma.prompt.create({
+    data: {
+      title: "Descrição Instagram",
+      template:
+        `Crie uma descrição atraente para o seu post no Instagram.
+  
+  Utilize até 150 caracteres para transmitir a essência do conteúdo.
+  
+  Adicione emojis relacionados ao tema para tornar a descrição mais visualmente atraente.
+  
+  Ao final, inclua de 5 a 10 hashtags em letras minúsculas para aumentar a visibilidade do seu post.
+  
+  O formato deve seguir:
+  '''
+  Descrição interessante. 😍📸
+  
+  #hashtag1 #hashtag2 #hashtag3 #hashtag4 ...
+  '''
+  `.trim(),
+    },
+  });
+  
 
 }
 
