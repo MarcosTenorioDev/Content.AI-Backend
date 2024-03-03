@@ -28,7 +28,7 @@ Esta aplicação utiliza as tecnologias TypeScript, React.js, Prisma, Node.js e 
     
 <hr>
 
-## Feito com carinho &#10084; por MarcosTenorio na NLW-AI da RocketSeat &#128640;
+## Feito com carinho &#10084; por MarcosTenorio &#128640;
     
      
   
