@@ -7,6 +7,7 @@ import { generateAiCompletionRoute } from './routes/generate-ai-completion';
 import { main } from '../prisma/seed';
 
 const app = fastify();
+const port = parseInt(process.env.PORT as string);
 
 app.register(fastifyCors, {
     origin: '*',
@@ -17,8 +18,10 @@ app.register(uploadVideoRoute)
 app.register(createTranscriptionRoute)
 app.register(generateAiCompletionRoute)
 
-app.listen({
-    port:Number(process.env.PORT) || 3000,
-}).then((port) =>{
-    console.log('HTTP server running! on port: ', port)
+app.listen({ port: port || 3000, host: '0.0.0.0' }, function (err, address) {
+    if (err) {
+        app.log.error(err)
+        process.exit(1)
+    }
+    app.log.info(`server listening on ${address}`)
 })
