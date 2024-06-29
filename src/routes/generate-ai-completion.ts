@@ -3,6 +3,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma";
 import { openai } from "../lib/openai";
 import { streamToResponse, OpenAIStream } from "ai";
+import { Response } from "openai/_shims/auto/types";
 
 export async function generateAiCompletionRoute(app: FastifyInstance) {
   app.post("/ai/complete", async (req, reply) => {
@@ -31,7 +32,7 @@ export async function generateAiCompletionRoute(app: FastifyInstance) {
       video.transcription
     );
 
-    const response = await openai.chat.completions.create({
+    const response:Response | any = await openai.chat.completions.create({
       model: "gpt-3.5-turbo-16k",
       temperature,
       messages: [{ role: "user", content: promptMessage }],
