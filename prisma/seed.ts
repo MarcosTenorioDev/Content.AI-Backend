@@ -101,6 +101,58 @@ Transcrição:
   `.trim(),
     },
   });
+
+  await prisma.prompt.create({
+    data: {
+      title: "Descrição LinkedIn",
+      template:
+        `Crie uma descrição envolvente e profissional para uma publicação no LinkedIn baseada na transcrição abaixo.
+  
+  Use até 300 palavras para destacar os pontos principais, insights e conclusões do vídeo.
+  
+  A descrição deve ser informativa e encorajar conexões a comentar e compartilhar suas próprias experiências.
+  
+  Inclua até 5 hashtags profissionais relevantes ao final.
+  
+  O formato deve ser:
+  '''
+  Descrição detalhada e profissional.
+  
+  #hashtag1 #hashtag2 #hashtag3 #hashtag4 #hashtag5
+  '''
+  
+  Transcrição:
+  '''
+  {transcription}
+  '''`.trim(),
+    },
+  });
+  
+  await prisma.prompt.create({
+    data: {
+      title: "Tweet do Twitter",
+      template:
+        `Crie um tweet cativante baseado na transcrição abaixo.
+  
+  Utilize no máximo 280 caracteres, incluindo hashtags e menções.
+  
+  O tweet deve ser informativo, instigante e engajar os seguidores a interagir com o post.
+  
+  Inclua de 2 a 5 hashtags relevantes e, se possível, uma menção a um usuário influente relacionado ao tema.
+  
+  O formato deve seguir:
+  '''
+  Texto do tweet. @usuarioInfluente
+  
+  #hashtag1 #hashtag2 #hashtag3 #hashtag4 #hashtag5
+  '''
+  
+  Transcrição:
+  '''
+  {transcription}
+  '''`.trim(),
+    },
+  });
   
 
 }
